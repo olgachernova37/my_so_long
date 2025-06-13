@@ -6,7 +6,7 @@
 #    By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/06 15:18:15 by olcherno          #+#    #+#              #
-#    Updated: 2025/06/13 17:46:53 by olcherno         ###   ########.fr        #
+#    Updated: 2025/06/13 19:24:14 by olcherno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ MLX_FLAGS = -L$(MLXDIR) -lmlx -lX11 -lXext -lm
 LIBS = -L$(LIBFTDIR) -lft -L$(FTPRINTF_DIR) -lftprintf
 
 # Список файлів
-SRC = main.c checking1_map.c checking2_map.c 
+SRC = main.c checking1_map.c checking2_map.c checking3_map.c
 SRCS = $(addprefix $(SRCDIR)/, $(SRC))
 OBJS = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
