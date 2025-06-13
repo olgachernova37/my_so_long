@@ -6,7 +6,7 @@
 /*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:21:12 by olcherno          #+#    #+#             */
-/*   Updated: 2025/06/13 18:28:09 by olcherno         ###   ########.fr       */
+/*   Updated: 2025/06/13 18:51:51 by olcherno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int fill_map_from_file(char **map, int rows, char *filename)
 		free(line);
         return (0);
     }
-    free(line);
+    // free(line);
     map[i] = NULL;
     close(fd);
     ft_printf("Successfully read %d lines\n", i);

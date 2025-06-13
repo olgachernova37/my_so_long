@@ -6,7 +6,7 @@
 /*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:27:23 by olcherno          #+#    #+#             */
-/*   Updated: 2025/06/13 17:27:38 by olcherno         ###   ########.fr       */
+/*   Updated: 2025/06/13 18:52:26 by olcherno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 		ft_printf("Error → Failed to read map.\n");
 		exit(1);
 	}
+	
 	// Process the map here
 	free_map(game.map);
 	return (0);

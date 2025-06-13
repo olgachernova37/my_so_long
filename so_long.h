@@ -77,6 +77,7 @@ void	free_partial_map(char **map, int filled);
 int	fill_map_from_file(char **map, int rows, char *filename);
 char	**read_map(char *filename);
 void free_map(char **map);
+char	*get_next_line_so_long(int fd);
 
 
 #endif

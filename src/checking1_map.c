@@ -6,7 +6,7 @@
 /*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:19:52 by olcherno          #+#    #+#             */
-/*   Updated: 2025/06/13 18:29:53 by olcherno         ###   ########.fr       */
+/*   Updated: 2025/06/13 18:40:26 by olcherno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,44 @@ int	count_map_rows_simple(char *filename)
 // Reads a single line from fd, trims the newline,
 // returns malloc'd string or NULL on error/EOF
 
+char	*get_next_line_so_long(int fd)
+{
+    char	buffer[2];
+    char	*line;
+    char	*temp;
+    int		bytes_read;
+
+    if (fd < 0)
+        return (NULL);
+    line = ft_strdup("");
+    if (!line)
+        return (NULL);
+    buffer[1] = '\0';
+    while ((bytes_read = read(fd, buffer, 1)) > 0)
+    {
+        temp = line;
+        line = ft_strjoin(line, buffer);
+        free(temp);
+        if (!line)
+            return (NULL);
+        if (buffer[0] == '\n')
+            break ;
+    }
+    if (bytes_read <= 0 && !*line)
+    {
+        free(line);
+        return (NULL);
+    }
+    return (line);
+}
+
+
 char	*read_map_line(int fd)
 {
 	char	*line;
 	size_t	len;
 
-	line = get_next_line(fd);
+	line = get_next_line_so_long(fd);
 	if (!line)
 		return (NULL);
 	len = ft_strlen(line);
