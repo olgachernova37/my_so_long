@@ -1,64 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/13 17:27:23 by olcherno          #+#    #+#             */
+/*   Updated: 2025/06/13 17:27:38 by olcherno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
 
-static int	file_extension(char *map)
+int	main(int argc, char **argv)
 {
-	int	i;
+	t_map	game;
 
-	if (!map)
-		return (0);
-	i = ft_strlen(map) - 1;
-	if (map[i] == 'r' && map[i - 1] == 'e'
-		&& map[i - 2] == 'b' && map[i - 3] == '.')
-		return (1);
+	checking_input(argc, argv);
+	game.map = read_map(argv[1]);
+	if (!game.map)
+	{
+		ft_printf("Error → Failed to read map.\n");
+		exit(1);
+	}
+	// Process the map here
+	free_map(game.map);
 	return (0);
 }
-
-void checking_input (int argc, char** argv)
-{
-	int fd;
-
-	if (argc != 2)
-	{
-		ft_printf("Error → Entry should be: ./so_long mapXYZ.ber.\n");
-		exit (1);
-	}
-	fd = open(argv[1], O_RDONLY);
-	if (map_checker(argv[1]) == 0)
-	{
-		ft_printf("Error → Invalid map extension.\n");
-		exit (1);
-	}
-	else if (fd < 0)
-	{
-		ft_printf("Error → Invalid map file.\n");
-		exit (1);
-	}
-	return (1);
-}
-
-int main(int argc, char** argv) 
-{
-	checking_input (argc, argv);
-
-
-	return(0);
-}
-
-
-
-
-
-
-
 
 // #define MALLOC_ERROR	1
 // #define	SIDE_LEN		800
 // #define X				50
 // #define Y				50
 
-
 // typedef struct s_img
 // {
+
 // 	void	*img_ptr;
 // 	char	*img_pixels_ptr;
 // 	int		bits_per_pixel;
@@ -76,7 +53,6 @@ int main(int argc, char** argv)
 // 	void	*win;
 // 	t_img	img;
 // }				t_var;
-
 
 // void	my_pixel_put(t_img *img, int x, int y, int color)
 // {
@@ -98,7 +74,6 @@ int main(int argc, char** argv)
 // 						Y,
 // 						color);
 // }
-	
 
 // int	f(int keysym, t_var *data)
 // {
@@ -125,9 +100,8 @@ int main(int argc, char** argv)
 // 							data->img.img_ptr,
 // 							0, 0);
 
-// 	return 0;
+// 	return (0);
 // }
-
 
 // /*
 //  * All the checks for errors like
@@ -137,7 +111,7 @@ int main(int argc, char** argv)
 //  * are not written to not clog te code!
 //  * But u know this stuff is a necessary evil 😂
 // */
-// int	main()
+// int	main(void)
 // {
 // 	t_var	vars;
 
@@ -147,7 +121,6 @@ int main(int argc, char** argv)
 // 								SIDE_LEN,
 // 								"My window");
 
-
 // 	// Code to create an image and get the related DATA
 // 	vars.img.img_ptr = mlx_new_image(vars.mlx,
 // 									SIDE_LEN,
@@ -155,12 +128,13 @@ int main(int argc, char** argv)
 // 	vars.img.img_pixels_ptr = mlx_get_data_addr(vars.img.img_ptr,
 // 												&vars.img.bits_per_pixel,
 // 												&vars.img.line_len,
+// 												&vars.img.line_len,
 // 												&vars.img.endian);
-
 
 // 	printf("Line_len %d <-> SIDE_LEN %d\n"
 // 			"bpp %d\n"
-// 			"endian %d\n", vars.img.line_len, SIDE_LEN, vars.img.bits_per_pixel, vars.img.endian);
+// 			"endian %d\n", vars.img.line_len, SIDE_LEN, vars.img.bits_per_pixel,
+// vars.img.endian);
 
 // 	mlx_key_hook(vars.win,
 // 				f,

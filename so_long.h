@@ -66,4 +66,17 @@ void	ft_exit(t_startmlx *gplay, t_map *game);
 void	ft_put_image(t_startmlx *gplay, int i_img, int x, int y);
 int		close_x(t_startmlx *gplay);
 
+
+int	file_extension(char *map);
+void	checking_input(int argc, char **argv);
+int	count_map_rows(char *filename);
+int	count_map_rows_simple(char *filename);
+char	*read_map_line(int fd);
+char	**allocate_map(int rows);
+void	free_partial_map(char **map, int filled);
+int	fill_map_from_file(char **map, int rows, char *filename);
+char	**read_map(char *filename);
+void free_map(char **map);
+
+
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: olha <olha@student.42.fr>                  +#+  +:+       +#+         #
+#    By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/06 15:18:15 by olcherno          #+#    #+#              #
-#    Updated: 2025/05/24 15:18:45 by olha             ###   ########.fr        #
+#    Updated: 2025/06/13 17:46:53 by olcherno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,13 +29,13 @@ MLX_FLAGS = -L$(MLXDIR) -lmlx -lX11 -lXext -lm
 LIBS = -L$(LIBFTDIR) -lft -L$(FTPRINTF_DIR) -lftprintf
 
 # Список файлів
-SRC = main.c
+SRC = main.c checking1_map.c checking2_map.c 
 SRCS = $(addprefix $(SRCDIR)/, $(SRC))
 OBJS = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
 # Основне правило
 $(NAME): $(OBJS) $(LIBFTDIR)/libft.a $(FTPRINTF_DIR)/libftprintf.a $(MLXDIR)/libmlx.a
-	$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(MLX_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) -no-pie $(OBJS) $(LIBS) $(MLX_FLAGS) -o $(NAME)
 
 # Компіляція .c → .o
 $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
