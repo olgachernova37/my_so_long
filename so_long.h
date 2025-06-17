@@ -6,7 +6,7 @@
 /*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 20:19:45 by olcherno          #+#    #+#             */
-/*   Updated: 2025/06/13 20:21:23 by olcherno         ###   ########.fr       */
+/*   Updated: 2025/06/17 22:16:26 by olcherno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define A 97
 # define D 100
 # define S 115
+# define POINT 50
 
 typedef struct s_map
 {
@@ -39,42 +40,21 @@ typedef struct s_map
 	int		map_p;
 	int		start[2];
 	int		exit[2];
-}			t_map;
-
-typedef struct s_startmlx
-{
-	char	**map;
 	void	*mlx;
 	void	*mlx_win;
 	void	*img[6];
-	size_t	size_x;
-	size_t	size_y;
 	int		step;
-	int		coin;
 	int		needcoin;
 	int		nbrimg;
-	int		start[2];
-	int		exit[2];
-}			t_startmlx;
+}			t_map;
 
-// int		ft_msgerror(int error);
-// char	*ft_read_file(char *map);
-// void	ft_freemap(char **map);
-// char	**check_map(char *map, t_map *game);
-// void	ft_check_content_map(char **map, t_map *game);
-// void	ft_content_condition(char **map, t_map *game, int x, int y);
-// int		ft_pathfind(t_map *game, int pox, int poy, int *count);
-// void	ft_pathvalid(t_map *game, char *mapname, t_startmlx *gplay);
-// void	ft_beforepathfind(t_map *game, int pox, int poy, int *count);
-// int		ft_check_if_exit(t_map *game);
-// void	ft_finalmap(t_map *game, char *mapname, t_startmlx *gplay);
-// void	ft_fillmap(t_startmlx *gplay);
-// int		deal_key(int keysym, t_startmlx *gplay);
-// void	ft_empty_struct(t_startmlx *gplay, t_map *game);
-// void	ft_empty_t_map(t_map *game);
-// void	ft_exit(t_startmlx *gplay, t_map *game);
-// void	ft_put_image(t_startmlx *gplay, int i_img, int x, int y);
-// int		close_x(t_startmlx *gplay);
+// typedef struct s_startmlx
+// {
+
+
+// 	int		start[2];
+// 	int		exit[2];
+// }			t_startmlx;
 
 int			file_extension(char *map);
 void		checking_input(int argc, char **argv);
@@ -91,7 +71,20 @@ char		*append_next_char(int fd, char *line, int *bytes_read);
 
 void		check_map(t_map *game);
 int			is_map_rectangular(t_map *map_struct);
-void ft_msgerror(int error);
+void		ft_msgerror(int error);
+
+void		ft_check_content_map(t_map *map);
+void		ft_content_condition(t_map *map, int x, int y);
+int			ft_check_c_p_e(t_map *map);
+void		validate_map_walls(int width, int height, t_map *map);
+
+void		ft_fl_fill(t_map *map);
+void		passability(t_map *map, size_t x, size_t y);
+void		passabilityrefill(t_map *map, size_t x, size_t y);
+void		ft_free_exit(t_map *map);
+void		ft_init_window(t_map *game);
+void		ft_load_images(t_map *game);
+
 
 
 #endif

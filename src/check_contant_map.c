@@ -6,66 +6,104 @@
 /*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 20:05:49 by olcherno          #+#    #+#             */
-/*   Updated: 2025/06/13 20:21:15 by olcherno         ###   ########.fr       */
+/*   Updated: 2025/06/17 22:51:21 by olcherno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-// void	ft_check_content_map(char **map, t_map *game)
-// {
-//     int	x;
-//     int	y;
+void	ft_check_content_map(t_map *map)
+{
+	size_t	x;
+	size_t	y;
 
-//     x = 0;
-//     y = 0;
-//     while (map[y])
-//     {
-//         while (map[y][x])
-//         {
-//             ft_content_condition(map, game, x, y);
-//             x++;
-//         }
-//         if (x != game->size_x)
-//             ft_msgerror(1);
-//         x = 0;
-//         y++;
-//     }
-//     if (y != game->size_y)
-//         ft_msgerror(1);
-// }
-// void	ft_content_condition(char **map, t_map *game, int x, int y)
-// {
-//     if (map[y][x] == 'C')
-//     {
-//         game->coin++;
-//     }
-//     else if (map[y][x] == 'E')
-//     {
-//         game->map_e++;
-//         game->exit[0] = x;
-//         game->exit[1] = y;
-//     }
-//     else if (map[y][x] == 'P')
-//     {
-//         game->map_p++;
-//         game->start[0] = x;
-//         game->start[1] = y;
-//     }
-//     else if (map[y][x] != '0' && map[y][x] != '1')
-//     {
-//         ft_msgerror(2);
-//     }
-// }
-// int	ft_check_if_exit(t_map *game)
-// {
-//     if (game->map_e != 1 || game->map_p != 1 || game->coin < 1)
-//     {
-//         ft_msgerror(3);
-//         return (0);
-//     }
-//     return (1);
-// }
+	map->coin = 0;
+	map->map_e = 0;
+	map->map_p = 0;
+	map->needcoin = 0;
+	map->step = 0;
+	x = 0;
+	y = 0;
+	while (map->map[y])
+	{
+		while (map->map[y][x])
+		{
+			ft_content_condition(map, x, y);
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	if (!(ft_check_c_p_e(map)))
+	{
+		free_map(map->map);
+		ft_msgerror(3);
+	}
+}
+
+void	ft_content_condition(t_map *map, int x, int y)
+{
+	if (map->map[y][x] == 'C')
+	{
+		map->coin++;
+	}
+	else if (map->map[y][x] == 'E')
+	{
+		map->map_e++;
+		map->exit[0] = x;
+		map->exit[1] = y;
+	}
+	else if (map->map[y][x] == 'P')
+	{
+		map->map_p++;
+		map->start[0] = x;
+		map->start[1] = y;
+	}
+	else if (map->map[y][x] != '0' && map->map[y][x] != '1')
+	{
+		free_map(map->map);
+		ft_msgerror(2);
+	}
+}
+
+int	ft_check_c_p_e(t_map *map)
+{
+	if (map->map_e != 1 || map->map_p != 1 || map->coin < 1)
+	{
+		free_map(map->map);
+		ft_msgerror(3);
+		return (0);
+	}
+	return (1);
+}
+
+void	validate_map_walls(int width, int height, t_map *map)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < width - 1)
+	{
+		if (map->map[0][x] != '1' || map->map[height - 1][x] != '1')
+		{
+			free_map(map->map);
+			ft_msgerror(5);
+		}
+		x++;
+	}
+	y = 0;
+	while (y < height - 1)
+	{
+		if (map->map[y][0] != '1' || map->map[y][width - 1] != '1')
+		{
+			free_map(map->map);
+			ft_msgerror(5);
+		}
+		y++;
+	}
+}
+
 // void	ft_finalmap(t_map *game, char *mapname, t_startmlx *gplay)
 // {
 //     if (!ft_check_if_exit(game))
@@ -74,6 +112,7 @@
 //     ft_fillmap(gplay);
 //     ft_empty_struct(gplay, game);
 // }
+
 // void	ft_empty_struct(t_startmlx *gplay, t_map *game)
 // {
 //     gplay->map = NULL;
@@ -107,13 +146,20 @@
 // }
 void	ft_msgerror(int error)
 {
-    if (error == 1)
-        ft_printf("Error → Invalid map size.\n");
-    else if (error == 2)
-        ft_printf("Error → Invalid character in map.\n");
-    else if (error == 3)
-        ft_printf("Error → Map must have exactly one exit, one player, and at least one coin.\n");
-    else
-        ft_printf("Error → Unknown error.\n");
-    exit(1);            
+	if (error == 1)
+		ft_printf("Error → Invalid map size.\n");
+	else if (error == 2)
+		ft_printf("Error → Invalid character in map.\n");
+	else if (error == 3)
+		ft_printf("Error → Map must have exactly one exit, one player,\
+			and at least one coin.\n");
+	else if (error == 4)
+		ft_printf("Error → Map is not rectangular.\n");
+	else if (error == 5)
+		ft_printf("Error → Map is not closed by walls.\n");
+	else if (error == 6)
+		ft_printf("Error → Map is not closed by walls.\n");
+	else
+		ft_printf("Error → Unknown error.\n");
+	exit(1);
 }

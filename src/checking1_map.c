@@ -6,26 +6,25 @@
 /*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:19:52 by olcherno          #+#    #+#             */
-/*   Updated: 2025/06/13 20:38:58 by olcherno         ###   ########.fr       */
+/*   Updated: 2025/06/17 23:00:46 by olcherno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int file_extension(char *map)
+int	file_extension(char *map)
 {
-    int len;
-    
-    if (!map)
-        return (0);
-    
-    len = ft_strlen(map);
-    if (len < 4 || ft_strncmp(&map[len-4], ".ber", 4) != 0)
-    {
-        ft_printf("Invalid file type, use .ber!\n");
-        return (0);
-    }
-    return (1);
+	int	len;
+
+	if (!map)
+		return (0);
+	len = ft_strlen(map);
+	if (len < 4 || ft_strncmp(&map[len - 4], ".ber", 4) != 0)
+	{
+		ft_printf("Invalid file type, use .ber!\n");
+		return (0);
+	}
+	return (1);
 }
 
 void	checking_input(int argc, char **argv)
@@ -54,20 +53,33 @@ int	count_map_rows(char *filename)
 {
 	char	buffer[1024];
 	ssize_t	bytes_read;
-
-	int fd = 0;
-    int count = 0;
+	int		fd = 0;
+	int		count = 0;
+	int		has_content = 0;  // Track if we've seen any content
+	int		i;
+	
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (-1);
+		
 	while ((bytes_read = read(fd, buffer, sizeof(buffer))) > 0)
 	{
-		for (int i = 0; i < bytes_read; i++)
+		has_content = 1;  // We've seen content
+		
+		i = 0;
+		while (i < bytes_read)
 		{
 			if (buffer[i] == '\n')
 				count++;
+			i++;
 		}
 	}
+	
+	// If the file had content but didn't end with a newline, add one more line
+	if (has_content && bytes_read == 0 && 
+        (count == 0 || buffer[bytes_read-1] != '\n'))
+        count++;
+        
 	close(fd);
 	return (count);
 }
@@ -75,12 +87,14 @@ int	count_map_rows(char *filename)
 int	count_map_rows_simple(char *filename)
 {
 	char	c;
+	int		fd;
+	int		count;
 
-	int fd, count = 0;
+	fd = 0;
+	count = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (-1);
-	// Count one char at a time - slower but more reliable
 	while (read(fd, &c, 1) > 0)
 	{
 		if (c == '\n')
@@ -106,46 +120,5 @@ char	*append_next_char(int fd, char *line, int *bytes_read)
 		line = ft_strjoin(line, buffer);
 		free(temp);
 	}
-	return (line);
-}
-
-char	*get_next_line_so_long(int fd)
-{
-	char	*line;
-	int		bytes_read = 1;
-
-	if (fd < 0)
-		return (NULL);
-	line = ft_strdup("");
-	if (!line)
-		return (NULL);
-	while (bytes_read > 0)
-	{
-		line = append_next_char(fd, line, &bytes_read);
-		if (!line)
-			return (NULL);
-		if (bytes_read > 0 && line[ft_strlen(line) - 1] == '\n')
-			break ;
-	}
-	if (bytes_read <= 0 && (!line || !*line))
-	{
-		free(line);
-		return (NULL);
-	}
-	return (line);
-}
-
-
-char	*read_map_line(int fd)
-{
-	char	*line;
-	size_t	len;
-
-	line = get_next_line_so_long(fd);
-	if (!line)
-		return (NULL);
-	len = ft_strlen(line);
-	if (len > 0 && line[len - 1] == '\n')
-		line[len - 1] = '\0';
 	return (line);
 }
