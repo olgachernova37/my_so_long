@@ -6,7 +6,7 @@
 /*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:19:52 by olcherno          #+#    #+#             */
-/*   Updated: 2025/06/17 23:00:46 by olcherno         ###   ########.fr       */
+/*   Updated: 2025/06/18 15:06:30 by olcherno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,63 +49,50 @@ void	checking_input(int argc, char **argv)
 	close(fd);
 }
 
+int	count_newlines_in_buffer(char *buffer, ssize_t size)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (i < size)
+	{
+		if (buffer[i] == '\n')
+			count++;
+		i++;
+	}
+	return (count);
+}
+
 int	count_map_rows(char *filename)
 {
 	char	buffer[1024];
 	ssize_t	bytes_read;
-	int		fd = 0;
-	int		count = 0;
-	int		has_content = 0;  // Track if we've seen any content
-	int		i;
-	
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		return (-1);
-		
-	while ((bytes_read = read(fd, buffer, sizeof(buffer))) > 0)
-	{
-		has_content = 1;  // We've seen content
-		
-		i = 0;
-		while (i < bytes_read)
-		{
-			if (buffer[i] == '\n')
-				count++;
-			i++;
-		}
-	}
-	
-	// If the file had content but didn't end with a newline, add one more line
-	if (has_content && bytes_read == 0 && 
-        (count == 0 || buffer[bytes_read-1] != '\n'))
-        count++;
-        
-	close(fd);
-	return (count);
-}
-
-int	count_map_rows_simple(char *filename)
-{
-	char	c;
 	int		fd;
 	int		count;
+	int		has_content;
 
 	fd = 0;
 	count = 0;
+	has_content = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (-1);
-	while (read(fd, &c, 1) > 0)
+	bytes_read = read(fd, buffer, sizeof(buffer));
+	while (bytes_read > 0)
 	{
-		if (c == '\n')
-			count++;
+		has_content = 1;
+		count += count_newlines_in_buffer(buffer, bytes_read);
+		bytes_read = read(fd, buffer, sizeof(buffer));
 	}
+	if (has_content && bytes_read == 0 && (count == 0))
+		count++;
+	if (buffer[bytes_read - 1] != '\n')
+		count++;
 	close(fd);
 	return (count);
 }
-
-// Reads a single line from fd, trims the newline,
-// returns malloc'd string or NULL on error/EOF
 
 char	*append_next_char(int fd, char *line, int *bytes_read)
 {

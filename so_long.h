@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olha <olha@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 20:19:45 by olcherno          #+#    #+#             */
-/*   Updated: 2025/06/18 12:17:04 by olha             ###   ########.fr       */
+/*   Updated: 2025/06/18 15:09:25 by olcherno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,6 @@ typedef struct s_map
 	int		point;
 }			t_map;
 
-// typedef struct s_startmlx
-// {
-
-
-// 	int		start[2];
-// 	int		exit[2];
-// }			t_startmlx;
-
 int			file_extension(char *map);
 void		checking_input(int argc, char **argv);
 int			count_map_rows(char *filename);
@@ -85,6 +77,16 @@ void		passabilityrefill(t_map *map, size_t x, size_t y);
 void		ft_free_exit(t_map *map);
 void		ft_init_window(t_map *game);
 void		ft_load_images(t_map *game);
+void		put_tile(t_map *map, int x, int y, void *img);
+void		draw_map(t_map *map);
+int			key_move(int key, t_map *map);
+void		move_player(t_map *map, int new_x, int new_y);
+void		display_move_counter(t_map *map);
+void		free_and_exit(t_map *map);
+int	count_newlines_in_buffer(char *buffer, ssize_t size);
+void		destroy_images(t_map *map);
+int			close_button(t_map *map);
+
 
 
 

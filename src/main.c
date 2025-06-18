@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olha <olha@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:24:25 by olcherno          #+#    #+#             */
-/*   Updated: 2025/06/18 12:16:22 by olha             ###   ########.fr       */
+/*   Updated: 2025/06/18 14:49:54 by olcherno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,6 @@ int	main(int argc, char **argv)
 	print_map(game.map);
 	check_map(&game);
 	ft_init_window(&game);
-
-
-
-	
 	if (game.map)
 		free_map(game.map);
 	return (0);

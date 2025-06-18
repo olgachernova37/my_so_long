@@ -1,1 +1,4 @@
 *.o
+.vscode/
+obj/
+so_long

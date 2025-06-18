@@ -1,3 +1,0 @@
- ./so_long src/maps/mandatory/valid_maps/map1.ber  
-  valgrind ./so_long src/maps/mandatory/valid_maps/map1.ber
-  make re 

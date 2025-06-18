@@ -6,7 +6,7 @@
 #    By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/06 15:18:15 by olcherno          #+#    #+#              #
-#    Updated: 2025/06/17 21:10:58 by olcherno         ###   ########.fr        #
+#    Updated: 2025/06/18 15:13:59 by olcherno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ MLX_FLAGS = -L$(MLXDIR) -lmlx -lX11 -lXext -lm
 LIBS = -L$(LIBFTDIR) -lft -L$(FTPRINTF_DIR) -lftprintf
 
 # Список файлів
-SRC = main.c checking1_map.c checking2_map.c checking3_map.c check_contant_map.c passability.c window.c
+SRC = main.c checking1_map.c checking2_map.c checking3_map.c check_contant_map.c passability.c window.c player.c
 SRCS = $(addprefix $(SRCDIR)/, $(SRC))
 OBJS = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
@@ -55,9 +55,6 @@ $(FTPRINTF_DIR)/libftprintf.a:
 $(MLXDIR)/libmlx.a:
 	$(MAKE) -C $(MLXDIR)
 
-# Стандартні правила
-.PHONY: all clean fclean re
-
 all: $(NAME)
 
 clean:
@@ -73,3 +70,6 @@ fclean: clean
 	$(MAKE) -C $(MLXDIR) clean
 
 re: fclean all
+
+# Стандартні правила
+.PHONY: all clean fclean re
