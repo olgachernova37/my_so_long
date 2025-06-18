@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olha <olha@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 20:19:45 by olcherno          #+#    #+#             */
-/*   Updated: 2025/06/17 22:16:26 by olcherno         ###   ########.fr       */
+/*   Updated: 2025/06/18 12:17:04 by olha             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define A 97
 # define D 100
 # define S 115
-# define POINT 50
+
 
 typedef struct s_map
 {
@@ -46,6 +46,7 @@ typedef struct s_map
 	int		step;
 	int		needcoin;
 	int		nbrimg;
+	int		point;
 }			t_map;
 
 // typedef struct s_startmlx

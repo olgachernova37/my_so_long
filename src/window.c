@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olha <olha@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:26:02 by olcherno          #+#    #+#             */
-/*   Updated: 2025/06/17 22:54:03 by olcherno         ###   ########.fr       */
+/*   Updated: 2025/06/18 12:32:54 by olha             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	ft_load_images(t_map *game)
 	int	width;
 	int	height;
 
-	width = POINT;
-	height = POINT;
+	width = game->point;
+	height = game->point;
 	game->img[0] = mlx_xpm_file_to_image(game->mlx, "src/img/0.xpm", &width,
 			&height);
 	if (!game->img[0])
@@ -72,7 +72,7 @@ void	ft_load_images(t_map *game)
 }
 void	put_tile(t_map *map, int x, int y, void *img)
 {
-	mlx_put_image_to_window(map->mlx, map->mlx_win, img, x * POINT, y * POINT);
+	mlx_put_image_to_window(map->mlx, map->mlx_win, img, x * map->point, y * map->point);
 }
 
 void	draw_map(t_map *map)
@@ -155,6 +155,23 @@ void	exit_game(t_map *map)
 // 	return (0);
 // }
 
+void display_move_counter(t_map *map)
+{
+	char *count_str;
+	char *full_str;
+
+	count_str = ft_itoa(map->step);
+	full_str = ft_strjoin("Moves: ", count_str);
+
+	// Display with better positioning and white color
+	mlx_string_put(map->mlx, map->mlx_win, 10, map->size_y * map->point - 20, 0xFF0000, full_str);
+	mlx_string_put(map->mlx, map->mlx_win, 10, map->size_y * map->point - 20, 0xFFFFFF, full_str);
+	mlx_string_put(map->mlx, map->mlx_win, 11, map->size_y * map->point - 19, 0xFFFFFF, full_str);
+
+	free(count_str);
+	free(full_str);
+}
+
 void	move_player(t_map *map, int new_x, int new_y)
 {
 	char	next_tile;
@@ -183,7 +200,8 @@ void	move_player(t_map *map, int new_x, int new_y)
 	
 	map->step++;
 	ft_printf("Moves: %d\n", map->step);
-	draw_map(map);
+	draw_map(map);              // First draw the map
+    display_move_counter(map);  // Then draw the text ON TOP of the map
 }
 
 int	on_keypress(int key, t_map *map)
@@ -219,9 +237,6 @@ int	on_destroy(t_map *map)
 }
 
 
-
-
-
 void	ft_init_window(t_map *game)
 {
 	game->mlx = mlx_init();
@@ -232,8 +247,8 @@ void	ft_init_window(t_map *game)
 		exit(1);
 	}
 	ft_load_images(game);
-	game->mlx_win = mlx_new_window(game->mlx, game->size_x * POINT, game->size_y
-			* POINT, "So Long");
+	game->mlx_win = mlx_new_window(game->mlx, game->size_x * game->point, game->size_y
+			* game->point, "So Long");
 	if (!game->mlx_win)
 	{
 		ft_printf("Error → Failed to create window.\n");
@@ -242,7 +257,8 @@ void	ft_init_window(t_map *game)
 
 	draw_map(game);
 	// usleep(1000000);
-		
+	game->step = 0;
+	display_move_counter(game);
 	mlx_key_hook(game->mlx_win, on_keypress, game);
     mlx_hook(game->mlx_win, 17, 0, on_destroy, game); // Close window on cross button
 	mlx_loop(game->mlx);

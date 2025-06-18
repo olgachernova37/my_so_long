@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olha <olha@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:24:25 by olcherno          #+#    #+#             */
-/*   Updated: 2025/06/17 22:26:15 by olcherno         ###   ########.fr       */
+/*   Updated: 2025/06/18 12:16:22 by olha             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	main(int argc, char **argv)
 	game.coin = 0;
 	game.map_e = 0;
 	game.map_p = 0;
+	game.point = 50;
 	checking_input(argc, argv);
 	game.map = read_map(argv[1]);
 	if (!game.map)
