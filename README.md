@@ -224,13 +224,13 @@ Learn more: [42.fr](https://www.42.fr/) | [42 Prague](https://www.42prague.com/)
   <p><em>Passionate about systems programming and game development</em></p>
   
   <!-- Add your contact links here -->
-  <a href="https://github.com/olcherno">
+  <a href="https://github.com/olgachernova37">
     <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
   </a>
-  <a href="https://www.linkedin.com/in/yourprofile/">
+  <a href="https://www.linkedin.com/in/olha-chernova-581312125/">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">
   </a>
-  <a href="mailto:your.email@example.com">
+  <a href="mailto:olgachernova37@gmail.com">
     <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white">
   </a>
 </div>
