@@ -148,6 +148,7 @@ make bonus    # Compile with bonus features
 <!-- Add your actual screenshots here -->
 <div align="center">
   <img src="images/gameplay_1.png" alt="Gameplay Screenshot 1" width="400">
+  <br>
   <img src="images/gameplay_2.png" alt="Gameplay Screenshot 2" width="400">
   <br>
   <em>Different levels showing increasing complexity</em>
