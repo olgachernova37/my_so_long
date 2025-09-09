@@ -4,6 +4,16 @@
 ![Language](https://img.shields.io/badge/Language-C-blue)
 ![Platform](https://img.shields.io/badge/Platform-Linux-orange)
 
+
+<h1 align="center"> so_long - @42sp </h1>
+
+<p align="center">:information_source: A small 2D Game made using the MiniLibX Graphics Library - Textures, sprites and tiles included. </p>
+<p align="center"><a href="https://www.42sp.org.br/" target="_blank"><img src="https://img.shields.io/static/v1?label=&message=SP&color=000&style=for-the-badge&logo=42""></a></p>
+<p align="center"><a href="https://github.com/augustobecker/so_long" target="_blank"><img align="center" alt="so_long" src="https://user-images.githubusercontent.com/81205527/179134510-48689e9e-f8e4-4165-be40-2e0ec8f5d60d.png"> </a></p>
+<p align="center">123/100 :white_check_mark:</p>
+<p align="center"><a href="https://github.com/augustobecker/SoLong/blob/main/READMES/README-ptbr.md" target="_blank"><img src="https://img.shields.io/badge/dispon%C3%ADvel%20tamb%C3%A9m%20em-PT--BR-yellow"></a></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/81205527/174392536-21619238-638a-4173-a77c-1b168c6c7898.png"> </p>
+
 ## 📖 What is So Long?
 
 **So Long** is a simple 2D adventure game where you control a character who needs to collect all coins scattered throughout a maze and then escape through the exit. It's like a digital treasure hunt! 
@@ -107,80 +117,14 @@ so_long/
 └── so_long.h      # Header file
 ```
 
-## 🎬 Adding GIF Demonstrations
 
-### Method 1: Screen Recording to GIF
 
-1. **Record your gameplay:**
-   ```bash
-   # Install recording tool (if not already installed)
-   sudo apt-get install byzanz-record
-   
-   # Record a 30-second gameplay clip
-   byzanz-record --duration=30 --x=0 --y=0 --width=800 --height=600 gameplay.gif
-   ```
-
-2. **Create a recordings folder:**
-   ```bash
-   mkdir screenshots_and_gifs
-   ```
-
-3. **Add to README:**
-   ```markdown
    ## 🎮 Game in Action
    
    ![Gameplay Demo](screenshots_and_gifs/gameplay.gif)
    
    ### Level 1 Walkthrough
    ![Level 1](screenshots_and_gifs/level1_demo.gif)
-   ```
-
-### Method 2: Using OBS Studio + Online Converter
-
-1. **Install OBS Studio:**
-   ```bash
-   sudo apt-get install obs-studio
-   ```
-
-2. **Record gameplay as MP4**
-3. **Convert to GIF using online tools:**
-   - Upload MP4 to [ezgif.com](https://ezgif.com/video-to-gif)
-   - Optimize for web (reduce size)
-   - Download and add to project
-
-### Method 3: Terminal-based Recording
-
-```bash
-# Install asciinema for terminal recording
-sudo apt-get install asciinema
-
-# Record terminal session
-asciinema rec gameplay_terminal.cast
-
-# Convert to GIF using agg
-npm install -g @asciinema/agg
-agg gameplay_terminal.cast gameplay_terminal.gif
-```
-
-### Recommended GIF Specifications
-- **Resolution:** 800x600 pixels (or smaller)
-- **Duration:** 10-30 seconds per demo
-- **File Size:** Under 5MB for GitHub
-- **Frame Rate:** 10-15 FPS (keeps file size manageable)
-
-### GIF Organization Structure
-```
-screenshots_and_gifs/
-├── gameplay_overview.gif     # Main gameplay demonstration
-├── level_demos/
-│   ├── easy_level.gif       # Beginner level walkthrough
-│   ├── medium_level.gif     # Intermediate level
-│   └── hard_level.gif       # Advanced level
-├── feature_demos/
-│   ├── coin_collection.gif  # Showing coin collection
-│   └── victory_sequence.gif # Winning the game
-└── controls_demo.gif        # Demonstrating controls
-```
 
 ## 🏆 Game Features
 
