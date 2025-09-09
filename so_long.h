@@ -6,7 +6,7 @@
 /*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 20:19:45 by olcherno          #+#    #+#             */
-/*   Updated: 2025/06/18 15:09:25 by olcherno         ###   ########.fr       */
+/*   Updated: 2025/06/18 15:36:31 by olcherno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # define A 97
 # define D 100
 # define S 115
-
 
 typedef struct s_map
 {
@@ -83,11 +82,8 @@ int			key_move(int key, t_map *map);
 void		move_player(t_map *map, int new_x, int new_y);
 void		display_move_counter(t_map *map);
 void		free_and_exit(t_map *map);
-int	count_newlines_in_buffer(char *buffer, ssize_t size);
+int			count_newlines_in_buffer(char *buffer, ssize_t size);
 void		destroy_images(t_map *map);
 int			close_button(t_map *map);
-
-
-
 
 #endif
