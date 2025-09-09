@@ -77,7 +77,7 @@ sudo apt-get install gcc make libx11-dev libxext-dev libxrandr-dev libbsd-dev
 ### Installation & Running
 ```bash
 # 1. Clone the repository
-git clone https://github.com/yourusername/so_long.git
+git clone https://github.com/olgachernova37/my_so_long.git
 cd so_long
 
 # 2. Compile the project
