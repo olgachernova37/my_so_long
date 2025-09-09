@@ -149,7 +149,7 @@ make bonus    # Compile with bonus features
 <div align="center">
   <img src="images/gameplay_1.png" alt="Gameplay Screenshot 1" width="400">
   <br>
-  <img src="images/gameplay_2.png" alt="Gameplay Screenshot 2" width="400">
+  <img src="images/gameplay_2.png" alt="Gameplay Screenshot 2" width="800">
   <br>
   <em>Different levels showing increasing complexity</em>
 </div>
